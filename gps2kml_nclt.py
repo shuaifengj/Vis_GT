@@ -20,8 +20,26 @@ sampled_df = df
 kml = etree.Element('kml', xmlns="http://www.opengis.net/kml/2.2")
 document = etree.SubElement(kml, 'Document')
 
+# 添加KML文件的名称
+name = etree.SubElement(document, 'name')
+name.text = "GPS KITTI"
+
+# 定义样式
+style = etree.SubElement(document, 'Style', id="yellowLineGreenPoly")
+line_style = etree.SubElement(style, 'LineStyle')
+color = etree.SubElement(line_style, 'color')
+color.text = "ff0000ff"  # ARGB格式：半透明黄色
+width = etree.SubElement(line_style, 'width')
+width.text = "10"  # 线条宽度
+
+
 # 创建LineString元素，用于存储轨迹点
 placemark = etree.SubElement(document, 'Placemark')
+placemark_name = etree.SubElement(placemark, 'name')
+placemark_name.text = "Track"
+style_url = etree.SubElement(placemark, 'styleUrl')
+style_url.text = "#yellowLineGreenPoly"
+
 line_string = etree.SubElement(placemark, 'LineString')
 coordinates = etree.SubElement(line_string, 'coordinates')
 
@@ -38,7 +56,7 @@ coordinates.text = coords.strip()
 kml_str = etree.tostring(kml, pretty_print=True, xml_declaration=True, encoding='UTF-8')
 
 # 保存KML文件
-output_filename = 'gps.kml'
+output_filename = 'gps_nclt.kml'
 with open(output_filename, 'wb') as file:
     file.write(kml_str)
 

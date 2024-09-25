@@ -31,7 +31,7 @@ oxts_folder = '/home/shorwin/Downloads/2011_10_03_drive_0027_sync/2011_10_03/201
 gps_data = read_gps_data(oxts_folder)
 
 # 输出文件路径
-output_file = '/home/shorwin/Downloads/2011_10_03_drive_0027_sync/2011_10_03/2011_10_03_drive_0027_sync/oxts/data/gps_data.csv'
+output_file = './source_files/kitti_gps_00.csv'
 
 # 将GPS数据写入文件
 write_gps_to_file(gps_data, output_file)
